@@ -1,0 +1,799 @@
+﻿<Window x:Class="Task_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task_1"
+        mc:Ignorable="d"
+        Title="Word Set Simulator - by Yushko E.N." Height="371" Width="665" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Label Margin="1 1 1 0">Time left:</Label>
+            <Label x:Name="lbTime" Margin="1 1 65 0" FontWeight="Bold"></Label>
+            <Label Padding="1 5 1 1" >Fails:</Label>
+            <Label Name="lbFails" FontWeight="Bold" Padding="1 5 1 1" Margin="0 0 150 0" Content="0" ></Label>
+            <Label Padding="1 5 1 1" >Difficulty:</Label>
+            <Label Name="lbDifficulty" FontWeight="Bold" Padding="1 4 1 1" Content="1"></Label>
+            <Slider x:Name="slDifficulty" Value="0" Minimum="1" Maximum="5" TickPlacement="BottomRight" SelectionStart="1" Height="21" 
+        IsSelectionRangeEnabled="True" Width="94" Margin="5 5 1 1" TickFrequency="1" ValueChanged="Slider_ValueChanged" SmallChange="1"/>
+            <CheckBox x:Name="cbCaseSensitive" Margin="1 8 1 1" Click="cbCaseSensitive_Click" />
+            <Label Margin="1 1 50 1">CaseSensitive</Label>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btStart" Width="150" Margin="2" Click="btStart_Click">Start</Button>
+            <Button x:Name="btStop" Width="150" Margin="2" Click="btStop_Click">Stop</Button>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock Name="tbHeader" TextWrapping="Wrap" FontSize="25" Background="#FFD5F0F0" >
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Name="StackPanelKeyBoard">
+
+            <!--Блоки с клавиатурой:-->
+            <!--Первый блок-->
+            <StackPanel Name="KeyBoardLine_1" Orientation="Horizontal">
+                <Button x:Name="btUpLeftComma" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF9727E">
+                                <TextBlock Text="`" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="bt1" Width="40" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF9727E">
+                                <TextBlock Name="TextBlockStyle" Text="1" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="bt2" Width="40" Height="40"  Margin="1" >
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF9727E" >
+                                <TextBlock Text="2" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="bt3" Width="40" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF5EF6D">
+                                <TextBlock Text="3" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="bt4" Width="40" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="4" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="bt5" Width="40" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF66A7E8">
+                                <TextBlock Text="5" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="bt6" Width="40" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF66A7E8">
+                                <TextBlock Text="6" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="bt7" Width="40" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFA97AE2">
+                                <TextBlock Text="7" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="bt8" Width="40" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFA97AE2">
+                                <TextBlock Text="8" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="bt9" Width="40" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF9727E">
+                                <TextBlock Text="9" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="bt0" Width="40" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF5EF6D">
+                                <TextBlock Text="0" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btMinus" Width="40" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="-" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btEqually" Width="40" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="=" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="35" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btBackSpace" Width="100" Height="40"  Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="BackSpace" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="20" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <!--Второй блок-->
+            <StackPanel Name="KeyBoardLine_2" Orientation="Horizontal">
+                <Button x:Name="btTab" Width="60" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="Tab" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="20" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btQ" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF9727E">
+                                <TextBlock Text="q" Foreground="Black" 
+                                       Margin="10,-11,0,0"
+                                       FontSize="35" Width="30" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btW" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF5EF6D">
+                                <TextBlock Text="w" Foreground="Black" 
+                                       Margin="6,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btE" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="e" Foreground="Black" 
+                                       Margin="10,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btR" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF66A7E8">
+                                <TextBlock Text="r" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btT" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF66A7E8">
+                                <TextBlock Text="t" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btY" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFA97AE2">
+                                <TextBlock Text="y" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btU" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFA97AE2">
+                                <TextBlock Text="u" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btI" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF9727E">
+                                <TextBlock Text="i" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btO" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF5EF6D">
+                                <TextBlock Text="o" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btP" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="p" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btLeftBracket" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="[" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btRightBracket" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="]" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btSlashLeft" Width="80" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="\" Foreground="Black" 
+                                       Margin="31,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <!--Третий блок-->
+            <StackPanel x:Name="KeyBoardLine_3" Orientation="Horizontal">
+
+                <Button x:Name="btCapsLock" Width="85" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="Caps Lock" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="17" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btA" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF9727E">
+                                <TextBlock Text="a" Foreground="Black" 
+                                       Margin="10,-11,0,0"
+                                       FontSize="35" Width="30" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btS" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF5EF6D">
+                                <TextBlock Text="s" Foreground="Black" 
+                                       Margin="11,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btD" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="d" Foreground="Black" 
+                                       Margin="10,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btF" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF66A7E8">
+                                <TextBlock Text="f" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btG" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF66A7E8">
+                                <TextBlock Text="g" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btH" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFA97AE2">
+                                <TextBlock Text="h" Foreground="Black" 
+                                       Margin="12,-4,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btJ" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFA97AE2">
+                                <TextBlock Text="j" Foreground="Black" 
+                                       Margin="14,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btK" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF9727E">
+                                <TextBlock Text="k" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btL" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF5EF6D">
+                                <TextBlock Text="l" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btSemicolon" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text=";" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btUpComma" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="'" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btEnter" Width="97" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="Enter" Foreground="Black" 
+                                       Margin="25,6,0,0"
+                                       FontSize="20" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+
+            <!--Четвёртый блок-->
+            <StackPanel x:Name="KeyBoardLine_4" Orientation="Horizontal">
+                <Button x:Name="btShiftLeft" Width="110" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="Shift" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="17" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btZ" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF9727E">
+                                <TextBlock Text="z" Foreground="Black" 
+                                       Margin="10,-11,0,0"
+                                       FontSize="35" Width="30" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btX" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF5EF6D">
+                                <TextBlock Text="x" Foreground="Black" 
+                                       Margin="11,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btC" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="c" Foreground="Black" 
+                                       Margin="10,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btV" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF66A7E8">
+                                <TextBlock Text="v" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btB" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF66A7E8">
+                                <TextBlock Text="b" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btN" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFA97AE2">
+                                <TextBlock Text="n" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btM" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFA97AE2">
+                                <TextBlock Text="m" Foreground="Black" 
+                                       Margin="5,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btComma" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF9727E">
+                                <TextBlock Text="," Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btDot" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFF5EF6D">
+                                <TextBlock Text="." Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btSlashRight" Width="40" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate >
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF8BF36C">
+                                <TextBlock Text="/" Foreground="Black" 
+                                       Margin="12,-8,0,0"
+                                       FontSize="35" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btShiftRight" Width="115" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="Shift" Foreground="Black" 
+                                       Margin="40,6,0,0"
+                                       FontSize="20" Width="Auto" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+
+            <!--Пятый блок-->
+            <StackPanel x:Name="KeyBoardLine_5" Orientation="Horizontal">
+
+                <Button x:Name="btCtrlLeft" Width="60" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="Ctrl" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="17" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btWinLeft" Width="60" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="Win" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="17" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btAltLeft" Width="60" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="Alt" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="17" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btSpace" Width="280" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FFDAA962">
+                                <TextBlock Text="Space" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="17" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btAltRight" Width="60" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="Alt" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="17" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btWinRight" Width="60" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="Win" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="17" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btCtrlRight" Width="56" Height="40" Margin="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Name="BorderTemplate" CornerRadius="10" Background="#FF999999">
+                                <TextBlock Text="Ctrl" Foreground="Black" 
+                                       HorizontalAlignment="Center"  
+                                       VerticalAlignment="Center"
+                                       FontSize="17" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+
+</Window>
