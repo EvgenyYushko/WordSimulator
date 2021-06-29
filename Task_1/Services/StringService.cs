@@ -11,7 +11,7 @@ namespace Task_1.Services
         private static Random random = new Random();
 
         /// <summary>
-        /// Получить рандомную строку
+        /// Получить рандомную строку.
         /// </summary>
         /// <param name="countWord">колличесво слов в строке</param>
         /// <param name="isCaseSensitive">в том числе верхний регистр</param>
