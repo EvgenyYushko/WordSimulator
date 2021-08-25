@@ -13,7 +13,7 @@ namespace Task_1.Services
         /// <summary>
         /// Получить рандомную строку.
         /// </summary>
-        /// <param name="countWord">колличесво слов в строке..</param>
+        /// <param name="countWord">колличесво слов в строке</param>
         /// <param name="isCaseSensitive">в том числе верхний регистр</param>
         /// <returns></returns>
         public static string GetRandomString(int countWord, bool isCaseSensitive)
